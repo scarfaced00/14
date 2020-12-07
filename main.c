@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "linked_list.h"
+#include "linkedList.h"
 int main()
 {
 	int n[5];
