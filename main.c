@@ -8,24 +8,30 @@ struct Book {
 };
 int main()
 {
-	struct Book *p;
+	int i;
+	struct Book **bookshelf;
 	
-	p=(struct Book*)malloc(2*sizeof(struct Book));
-
-	if(p==NULL){
-		printf("memory allocation Error!\n");
-		return 1;
+	bookshelf=(struct Book**)malloc(1*sizeof(struct Book*));
+	for (i=0;i<3;i++)
+	{
+		bookshelf[i]=(struct Book*)malloc(10*sizeof(struct Book));
 	}
 	
-	p->number=1;
-	strcpy(p->title,"C programming");
+	bookshelf[1][3].number=5;
+	strcpy(bookshelf[1][3].title,"C programming");
 	
-	(p+1)->number=2;
-	strcpy((p+1)->title,"Electronics");
+	(bookshelf[2]+4)->number=3;
+	strcpy((bookshelf[2]+4)->title,"Communications Theory");
 	
-	printf("%s %s\n",p->title,(p+1)->title);
+	printf("book (1,3) : %i,%s\n",(bookshelf[1]+3)->number,(bookshelf[1]+3)->title);
+	printf("book (2,4) : %i,%s\n",bookshelf[2][4].number,bookshelf[2][4].title);
 	
-	free(p);
+	for(i=0;i<3;i++)
+	{
+		free(bookshelf[i]);
+	}
+	free(bookshelf);
 	return 0;
+
 }
 
